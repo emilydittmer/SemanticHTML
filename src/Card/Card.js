@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Card.css';
+import IncorrectCards from '../IncorrectCards/IncorrectCards.js';
 
 export default class Card extends Component {
   constructor(props) {
@@ -20,8 +21,6 @@ startGame = () => {
     shownCard: randomizeCards.pop(),
     }
   )
-  console.log("All Cards", this.props.allCards)
-  console.log("Shown Card", this.state.shownCard)
 }
 
 checkAnswer = (event) => {
@@ -29,24 +28,42 @@ checkAnswer = (event) => {
     this.props.increaseScore();
     this.displayNextCard();
   } else {
-    this.setState = {
-      incorrectCards: this.state.incorrectCards.push(this.state.shownCard)
-    }
+    let wrongAnswer = [];
+    wrongAnswer = this.state.incorrectCards.concat(this.state.shownCard);
+    this.setState(
+      {incorrectCards: wrongAnswer}
+      ,() => localStorage.setItem('allIncorrectCards', JSON.stringify(this.state.incorrectCards))
+    )
     this.displayNextCard();
   }
 }
 
-displayNextCard = () => {
-  console.log("display next card", this.state.randomCards)
+displayNextCard = (props) => {
+  this.setState(
+    { randomCards: this.state.randomCards, 
+      shownCard: this.state.randomCards.pop(),
+    }
+  )
 }
-
+displayNextCard = (props) => {
+  this.setState(
+    { randomCards: this.state.randomCards, 
+      shownCard: this.state.randomCards.pop(),
+    }
+  )
+}
 
   render() {
     let toggleStart;
     if(this.state.activeGame === false) {
-      toggleStart = <input type="button" className="startBtn" onClick={this.startGame} value="Start" />
+      toggleStart = 
+        <section className="start">
+        <input type="button" className="startBtn" onClick={this.startGame} value="Start" />
+        <IncorrectCards 
+          incorrectCards = {this.incorrectCards} 
+          checkAnswer/>
+        </section>
     } else {
-      this.state.randomCards.pop()
       toggleStart =
         <div>
           <h3>{this.state.shownCard.prompt}</h3>
@@ -57,7 +74,7 @@ displayNextCard = () => {
     }
     return (
       <section className="eachCard">
-        {toggleStart}
+        {toggleStart} 
       </section>
     );
   }
