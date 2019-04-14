@@ -20,17 +20,24 @@ startGame = () => {
     shownCard: randomizeCards.pop(),
     }
   )
+  console.log("All Cards", this.props.allCards)
+  console.log("Shown Card", this.state.shownCard)
 }
 
 checkAnswer = (event) => {
   if(event.target.value === this.state.shownCard.correctAnswer) {
     this.props.increaseScore();
+    this.displayNextCard();
   } else {
     this.setState = {
       incorrectCards: this.state.incorrectCards.push(this.state.shownCard)
     }
-    console.log(this.state.incorrectCards)
+    this.displayNextCard();
   }
+}
+
+displayNextCard = () => {
+  console.log("display next card", this.state.randomCards)
 }
 
 
