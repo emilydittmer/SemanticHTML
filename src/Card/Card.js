@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Card.css';
+import './Card.scss';
 import IncorrectCards from '../IncorrectCards/IncorrectCards.js';
 
 export default class Card extends Component {
@@ -45,13 +45,6 @@ displayNextCard = (props) => {
     }
   )
 }
-displayNextCard = (props) => {
-  this.setState(
-    { randomCards: this.state.randomCards, 
-      shownCard: this.state.randomCards.pop(),
-    }
-  )
-}
 
   render() {
     let toggleStart;
@@ -71,12 +64,12 @@ displayNextCard = (props) => {
       </section>
     } else if (this.state.activeGame){
       toggleStart =
-        <div>
+        <section className="activeGame">
           <h3>{this.state.shownCard.prompt}</h3>
           <input type="button" className="cardBtns" value={this.state.shownCard.possibleChoices[0]} onClick={this.checkAnswer}/>
           <input type="button" className="cardBtns" value={this.state.shownCard.possibleChoices[1]} onClick={this.checkAnswer}/>
           <input type="button" className="cardBtns" value={this.state.shownCard.possibleChoices[2]} onClick={this.checkAnswer}/>
-        </div> 
+        </section> 
     }
     return (
       <section className="eachCard">

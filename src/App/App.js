@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import Card from '../Card/Card.js';
-import Score from '../Score/Score.js';
 
 export default class App extends Component {
   constructor() {

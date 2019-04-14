@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './IncorrectCards.css';
+import './IncorrectCards.scss';
 import Card from '../Card/Card.js';
 
 export default class IncorrectCards extends Component {
