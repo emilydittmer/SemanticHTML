@@ -1,0 +1,25 @@
+.eachCard {
+  grid-column-start: 2;
+  grid-row-start: 2;
+  border: #000 solid 4px;
+  border-radius: 10px;
+  font-size: 1.5em;
+  color: #000;
+  background-color: rgba(349, 250, 255, 0.3);
+  height: 75%;
+}
+
+.start {
+  display: flex;
+}
+.startBtn {
+  height: 50px;
+  width: 30%;
+  display: flex;
+  align-content: center;
+}
+
+.startBtn:hover,
+.cardBtns:hover {
+  background-color:#e4c8cc;
+}
