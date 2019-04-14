@@ -8,7 +8,8 @@ export default class App extends Component {
     super();
     this.state = {
       allCards: [],
-      isLoading: false
+      isLoading: false,
+      playerScore: 0
     }
   }
   componentDidMount() {
@@ -24,8 +25,8 @@ export default class App extends Component {
       .catch(error => console.log('Card Upload', error));
   }
 
-  increaseScore() {
-    console.log("Increase Score", "hi")
+  increaseScore = () => {
+    this.setState({playerScore: this.state.playerScore + 1})
   }
 
   render() {
@@ -34,12 +35,13 @@ export default class App extends Component {
       <div className="startScreen">
         <header>
           <h1>Learn Semantic HTML</h1>
-          <Score />
+          <h2>Score: {this.state.playerScore}</h2>
           {this.state.isLoading === true && 
             <h5>Loading...</h5>}
         </header>
         <Card 
         allCards = {this.state.allCards}
+        increaseScore = {this.increaseScore}
         />
       </div>
     );
