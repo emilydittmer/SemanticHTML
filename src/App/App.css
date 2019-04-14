@@ -7,3 +7,9 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 }
+
+header {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  font-size: 2em;
+}
