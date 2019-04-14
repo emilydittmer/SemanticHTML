@@ -55,15 +55,21 @@ displayNextCard = (props) => {
 
   render() {
     let toggleStart;
-    if(this.state.activeGame === false) {
+    let checkLocalStorage = JSON.parse(localStorage.getItem('allIncorrectCards'));
+    if(this.state.activeGame === false && checkLocalStorage === null) {
       toggleStart = 
         <section className="start">
+          <input type="button" className="startBtn" onClick={this.startGame} value="Start" /> 
+        </section>
+    } else if (this.state.activeGame === false && checkLocalStorage.length > 0){
+      toggleStart = 
+      <section className="start">
         <input type="button" className="startBtn" onClick={this.startGame} value="Start" />
         <IncorrectCards 
           incorrectCards = {this.incorrectCards} 
           checkAnswer/>
-        </section>
-    } else {
+      </section>
+    } else if (this.state.activeGame){
       toggleStart =
         <div>
           <h3>{this.state.shownCard.prompt}</h3>
