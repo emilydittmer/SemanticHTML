@@ -7,6 +7,7 @@ export default class IncorrectCards extends Component {
     super(props);
     this.state = {
       toggleIncorrect: false
+
     }
   }
 
@@ -24,15 +25,15 @@ export default class IncorrectCards extends Component {
       allIncorrectCards = JSON.parse(localStorage.getItem('allIncorrectCards')).map(card => {
         return <div>
           <h3>{card.prompt}</h3>
-          <input type="button" className="cardBtns" value={card.possibleChoices[0]} />
-          <input type="button" className="cardBtns" value={card.possibleChoices[1]} />
-          <input type="button" className="cardBtns" value={card.possibleChoices[2]} />
+          <input type="button" className="cardBtns" value={card.possibleChoices[0]} onClick={this.props.checkAnswer}/>
+          <input type="button" className="cardBtns" value={card.possibleChoices[1]} onClick={this.props.checkAnswer}/>
+          <input type="button" className="cardBtns" value={card.possibleChoices[2]} onClick={this.props.checkAnswer}/>
         </div>
       })
     }
     return (
-      <section>
-        <input type="button" value="Practice Cards Previously Answered Incorrectly" onClick={this.useIncorrectCards}/>
+      <section className="playIncorrectCards">
+        <input type="button" className="incorrectStartBtn" value="Practice Cards Previously Answered Incorrectly" onClick={this.useIncorrectCards}/>
         {allIncorrectCards}
       </section>
     );

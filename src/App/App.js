@@ -13,11 +13,11 @@ export default class App extends Component {
   }
   componentDidMount() {
     this.setState({isLoading: true});
-    fetch('https://gist.githubusercontent.com/emilydittmer/50847a91c25638e102877bbab1a7782e/raw/9e4712554e25c6ff5fc917db15cb3b162ce80c93/dataset.md')
+    fetch('https://fe-apps.herokuapp.com/api/v1/memoize/1901/emilydittmer-semanitic-html/semantichtml')
       .then(response => response.json()) 
       .then(json => {
           this.setState({		    
-            allCards: json,
+            allCards: json.semanticHTML,
             isLoading: false
         });
       })
