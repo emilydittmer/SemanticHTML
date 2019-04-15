@@ -5,21 +5,35 @@
   border-radius: 10px;
   font-size: 1.5em;
   color: #000;
-  background-color: rgba(349, 250, 255, 0.3);
+  background-color: rgba(349, 250, 255, 0.8);
   height: 75%;
 }
 
 .start {
+  width: 100%;
   display: flex;
+  justify-content: center;
 }
 .startBtn {
   height: 50px;
   width: 30%;
-  display: flex;
-  align-content: center;
+  margin-top: 100px;
 }
 
 .startBtn:hover,
 .cardBtns:hover {
-  background-color:#e4c8cc;
+  background-color: #E4C1AE;
+}
+
+h3 {
+  text-align: center;
+}
+
+.cardBtns {
+  margin: 5px;
+  height: 40px
+}
+
+.allCardBtns {
+  text-align: center;
 }
