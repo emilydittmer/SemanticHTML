@@ -31,7 +31,7 @@ export default class App extends Component {
   render() {
 
   return (
-      <div className="startScreen">
+      <main className="startScreen">
         <header>
           <h1>Learn Semantic HTML</h1>
           <h2>Score: {this.state.playerScore}</h2>
@@ -42,7 +42,7 @@ export default class App extends Component {
         allCards = {this.state.allCards}
         increaseScore = {this.increaseScore}
         />
-      </div>
+      </main>
     );
   }
 }
