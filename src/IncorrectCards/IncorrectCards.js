@@ -6,36 +6,41 @@ export default class IncorrectCards extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toggleIncorrect: false
-
+      toggleIncorrect: false,
+      answeredIncorrectCards: [],
+      eachIncorrectCard: {}
     }
   }
-
-
-
-  useIncorrectCards = (props) => {
+  useIncorrectCards = () => {
+    let storageIncorrectCards = JSON.parse(localStorage.getItem('allIncorrectCards'));
     this.setState(
-      {toggleIncorrect: true}
-    )
+      {toggleIncorrect: true,
+      answeredIncorrectCards: storageIncorrectCards},
+      ()=> this.setState({eachIncorrectCard: storageIncorrectCards.pop()}))
   }
 
   render() {
-    let allIncorrectCards;
-    if(this.state.toggleIncorrect === true) {
-      allIncorrectCards = JSON.parse(localStorage.getItem('allIncorrectCards')).map(card => {
-        return <div>
-          <h3>{card.prompt}</h3>
-          <input type="button" className="cardBtns" value={card.possibleChoices[0]} onClick={this.props.checkAnswer}/>
-          <input type="button" className="cardBtns" value={card.possibleChoices[1]} onClick={this.props.checkAnswer}/>
-          <input type="button" className="cardBtns" value={card.possibleChoices[2]} onClick={this.props.checkAnswer}/>
-        </div>
-      })
-    }
-    return (
+    let toggleIncorrectCards;
+    if (this.state.toggleIncorrect === false) {
+      toggleIncorrectCards =
       <section className="playIncorrectCards">
         <input type="button" className="incorrectStartBtn" value="Practice Cards Previously Answered Incorrectly" onClick={this.useIncorrectCards}/>
-        {allIncorrectCards}
       </section>
-    );
+    } else {
+      console.log('ELSE STATE',this.state);
+      toggleIncorrectCards =
+      <div>
+        <h3>{this.state.eachIncorrectCard.prompt}</h3>
+        <div className="btnHolder">
+          <input type="button" className="cardBtns" value={this.state.eachIncorrectCard.possibleChoices}/>
+          <input type="button" className="cardBtns" value={this.state.eachIncorrectCard.possibleChoices} />
+        </div>
+      </div>
+      }
+    return (
+      <section>
+        {toggleIncorrectCards}
+      </section>
+    )
   }
 }

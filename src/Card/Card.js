@@ -46,6 +46,7 @@ displayNextCard = (props) => {
   )
 }
 
+// this.state.randomCards.length === 0
   render() {
     let toggleStart;
     let checkLocalStorage = JSON.parse(localStorage.getItem('allIncorrectCards'));
@@ -54,7 +55,7 @@ displayNextCard = (props) => {
         <section className="start">
           <input type="button" className="startBtn" onClick={this.startGame} value="Start" /> 
         </section>
-    } else if (this.state.randomCards.length === 0 && checkLocalStorage.length > 0){
+    } else if (this.state.randomCards.length === 25 && checkLocalStorage.length > 0){
       toggleStart = 
       <section className="start">
         <IncorrectCards 
